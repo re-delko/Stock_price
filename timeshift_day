@@ -1,0 +1,26 @@
+#2012年のdata取得
+start="2012-01-01"
+end="2012-12-31"
+# 期間を指定して株情報を取得する
+data = yf.download(tickers="^TOPX",start=start,end=end,auto_adjust=True, period='1mo', interval='1d')
+
+plt.legend()
+plt.title("TOPIX:2012-2020")
+plt.plot(train_data1["Close"])
+
+#dataの分割関数
+def split_list(l, n):
+    """
+    リストをサブリストに分割する
+    :param l: リスト
+    :param n: サブリストの要素数
+    :return: 
+    """
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
+
+datas=[]
+period=20
+for i in range(len(data)-(period-1)):
+    datas.append(data[i:period])
+    period=period+1
