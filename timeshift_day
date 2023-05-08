@@ -24,3 +24,20 @@ period=20
 for i in range(len(data)-(period-1)):
     datas.append(data[i:period])
     period=period+1
+
+
+datas=[]
+data_Close=[]
+period=20
+for i in range(len(data)-(period-1)):
+    data_Close.append(data["Close"][i:period].values)
+    period=period+1
+    
+
+
+data_index=[]
+for i in range(len(data_Close)):
+    first=data_Close[i][0]
+    for j in range(len(data_Close[i])):
+        #datas[i]["Close_index"]=datas[i]["Close"]
+        data_index.append(data_Close[i][j]/ first)
